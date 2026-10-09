@@ -7,6 +7,6 @@ data class PrecipitationConditions(
     enum class PrecipitationType {
         RAIN,
         SNOW,
-        MIX
+        MIX,
     }
 }

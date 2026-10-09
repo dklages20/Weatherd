@@ -8,15 +8,15 @@ import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
 
 data class ForecastQuery(
-    @param:DecimalMin("-90.0")
-    @param:DecimalMax("90.0")
+    @field:DecimalMin("-90.0")
+    @field:DecimalMax("90.0")
     val latitude: Double,
-    @param:DecimalMin("-180.0")
-    @param:DecimalMax("180.0")
+    @field:DecimalMin("-180.0")
+    @field:DecimalMax("180.0")
     val longitude: Double,
     val unit: WeatherUnit,
     val language: WeatherLanguage,
-    @param:Max(5)
-    @param:Min(1)
+    @field:Max(5)
+    @field:Min(1)
     val days: Int,
 )

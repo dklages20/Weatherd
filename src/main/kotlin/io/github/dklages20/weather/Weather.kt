@@ -28,6 +28,6 @@ data class Weather(
         SQUALL,
         TORNADO,
         CLEAR,
-        CLOUDS
+        CLOUDS,
     }
 }
