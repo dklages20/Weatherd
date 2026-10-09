@@ -1,14 +1,17 @@
 package io.github.dklages20.weather
 
+import com.fasterxml.jackson.annotation.JsonInclude
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class Weather(
     val pressure: Double,
     val humidity: Double,
     val visibility: Double,
+    val conditions: List<WeatherCondition>,
     val temperature: TemperatureConditions,
     val wind: WindConditions? = null,
     val cloudiness: CloudinessConditions? = null,
     val precipitation: PrecipitationConditions? = null,
-    val conditions: List<WeatherCondition> = emptyList(),
 ) {
     enum class WeatherCondition {
         THUNDERSTORM,
