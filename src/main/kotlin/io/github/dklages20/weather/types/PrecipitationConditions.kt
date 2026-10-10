@@ -1,4 +1,4 @@
-package io.github.dklages20.weather
+package io.github.dklages20.weather.types
 
 data class PrecipitationConditions(
     val nextHour: Double,

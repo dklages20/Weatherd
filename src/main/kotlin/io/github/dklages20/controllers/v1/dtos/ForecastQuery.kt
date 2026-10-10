@@ -1,7 +1,7 @@
 package io.github.dklages20.controllers.v1.dtos
 
-import io.github.dklages20.weather.WeatherLanguage
-import io.github.dklages20.weather.WeatherUnit
+import io.github.dklages20.weather.types.WeatherLanguage
+import io.github.dklages20.weather.types.WeatherUnit
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.Max
