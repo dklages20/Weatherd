@@ -16,5 +16,11 @@ interface WeatherService {
         unit: WeatherUnit,
     ): Weather
 
+    fun getCurrentWeatherByZipCode(
+        zip: String,
+        country: String,
+        unit: WeatherUnit,
+    ): Weather
+
     fun getForecast(): List<Weather>
 }

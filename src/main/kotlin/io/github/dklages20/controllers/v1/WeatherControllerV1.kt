@@ -3,6 +3,7 @@ package io.github.dklages20.controllers.v1
 import io.github.dklages20.controllers.v1.dtos.CurrentWeatherQueryByCityAndCountry
 import io.github.dklages20.controllers.v1.dtos.CurrentWeatherQueryByCityAndState
 import io.github.dklages20.controllers.v1.dtos.CurrentWeatherQueryByCoordinate
+import io.github.dklages20.controllers.v1.dtos.CurrentWeatherQueryByZipCodeAndCountry
 import io.github.dklages20.controllers.v1.dtos.ForecastQuery
 import io.github.dklages20.controllers.v1.dtos.ForecastResponse
 import io.github.dklages20.weather.WeatherService
@@ -54,6 +55,20 @@ class WeatherControllerV1(
             weatherService.getCurrentWeather(
                 city = currentWeatherQuery.city,
                 stateOrCountry = currentWeatherQuery.country,
+                unit = currentWeatherQuery.unit,
+            )
+
+        return weather
+    }
+
+    @GetMapping("/current/zip")
+    fun getCurrentWeather(
+        @Valid @ModelAttribute currentWeatherQuery: CurrentWeatherQueryByZipCodeAndCountry,
+    ): Weather {
+        val weather =
+            weatherService.getCurrentWeatherByZipCode(
+                zip = currentWeatherQuery.zip,
+                country = currentWeatherQuery.country,
                 unit = currentWeatherQuery.unit,
             )
 

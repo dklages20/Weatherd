@@ -29,3 +29,10 @@ data class CurrentWeatherQueryByCityAndCountry(
     val unit: WeatherUnit,
     val language: WeatherLanguage,
 )
+
+data class CurrentWeatherQueryByZipCodeAndCountry(
+    val zip: String,
+    val country: String,
+    val unit: WeatherUnit,
+    val language: WeatherLanguage,
+)

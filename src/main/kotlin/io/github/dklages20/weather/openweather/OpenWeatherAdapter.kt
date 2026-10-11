@@ -64,6 +64,29 @@ class OpenWeatherAdapter(
         )
     }
 
+    override fun getCurrentWeatherByZipCode(
+        zip: String,
+        country: String,
+        unit: WeatherUnit,
+    ): Weather {
+        val currentWeather =
+            openWeatherClient
+                .get()
+                .uri { uriBuilder ->
+                    uriBuilder.path("/weather")
+                    uriBuilder.queryParam(QUERY_PARAM_ZIP, "$zip,$country")
+                    uriBuilder.queryParam(QUERY_PARAM_API_KEY, openWeatherProperties.apiKey)
+                    uriBuilder.queryParam(QUERY_PARAM_UNITS, unit)
+                    uriBuilder.build()
+                }.retrieve()
+                .onStatus(HttpStatusCode::isError, openWeatherHTTPErrorHandlers.forLocation(zip, country))
+                .body(CurrentWeather::class.java)
+
+        return Weather(
+            currentWeather ?: throw WeatherServiceException("OpenWeather returned an empty response for ZIP code: $zip/$country"),
+        )
+    }
+
     override fun getForecast(): List<Weather> {
         TODO("Not yet implemented")
     }
@@ -74,5 +97,6 @@ class OpenWeatherAdapter(
         private const val QUERY_PARAM_API_KEY = "appid"
         private const val QUERY_PARAM_UNITS = "units"
         private const val QUERY_PARAM_Q = "q"
+        private const val QUERY_PARAM_ZIP = "zip"
     }
 }
